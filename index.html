@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vital Wellness</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #6dd5ed, #2193b0);
+            animation: gradient 6s ease infinite;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .wrapper {
+            text-align: center;
+            color: white;
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .fact {
+            font-size: 2em;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        .fact.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Vital Wellness</h1>
+        <div class="fact" id="health-fact"></div>
+    </div>
+    <script>
+        const healthFacts = [
+            "Drinking enough water can improve your mood and energy levels.",
+            "Regular exercise can increase your lifespan and improve your mental health.",
+            "Eating a balanced diet contributes significantly to overall health and well-being.",
+            "Sleep plays a crucial role in physical health and emotional well-being."
+        ];
+        let currentFactIndex = 0;
+
+        function changeFact() {
+            const factElement = document.getElementById('health-fact');
+            factElement.classList.remove('visible');
+            setTimeout(() => {
+                factElement.textContent = healthFacts[currentFactIndex];
+                factElement.classList.add('visible');
+                currentFactIndex = (currentFactIndex + 1) % healthFacts.length;
+            }, 1000);
+        }
+
+        setInterval(changeFact, 4000);
+        changeFact(); // Show first fact immediately
+    </script>
+</body>
+</html>
